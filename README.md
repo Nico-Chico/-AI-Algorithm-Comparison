@@ -1,5 +1,4 @@
 # AI-Algorithm-Comparison
-
 ## Tasks
 --------
 - Implementar PSO ¿Tenemos qué hacer más algoritmos?
