@@ -1,0 +1,77 @@
+TIEMPO DE LAS FUNCIONES
+
+METODOLOGÍA
+- Para calcular el tiempo que tarda cada función en ejecutarse hemos utilizado
+  llamadas a sistema.
+    - System.nanoTime() nos da el tiempo actual. Si guardamos el valor que nos
+      devuelve esta llamada en una variable llamada start (por ejemplo), llamamos a
+      la función en cuestión y justo después de la llamada volvemos a utilizar el
+      System.nanoTime() restándole el valor de start, obtendremos el tiempo que ha
+      tardado en ejecutarse el algoritmo.
+
+RESULTADOS ESPERADOS
+- En el caso del Hill Climbing (llamado greedy()), el tiempo depende totalmente
+  del número random que nos genere el Main, ya que si éste está muy alejado del máximo
+  local, necesitará más iteraciones hasta converger. En caso contrario, puede que no
+  sea necesaria ni una iteración más porque todos los puntos adjuntos dan peores resultados
+  y el punto inicial sea también el devuelto por la función.
+
+- Por otra parte, en el caso del algoritmo random se espera que todas las llamadas
+  tarden el mismo tiempo en completarse, ya que solamente consiste en generar puntos
+  aleatorios para después compararlos y en cada timestep elegir el mejor.
+
+EXPERIMENTACIÓN
+- La experimentación consistirá en ejecutar cada algoritmo un número concreto de iteraciones,
+  que se corresponde con el valor de la variable global nits en el programa (10 por defecto).
+  Mediremos el tiempo antes de empezar las iteraciones y justo después de la llamada,
+  de manera que restándolos obtendremos el tiempo que ha tardado cada algoritmo en ejecutarse
+  por completo en nuestro programa.
+
+- Si la variable global mode tiene valor igual a 1, estaremos midiendo el tiempo del algoritmo
+  random. De otro modo, si la variable mode tiene valor igual a 0, calcularemos el tiempo
+  de ejecución para el algoritmo greedy/Hill Climbing.
+
+- Para cada conjunto de iteraciones repetiremos el proceso 10 veces, de manera que
+  para el resultado final haremos la media de los 10 resultados para saber cuánto
+  se tarda de media en ejecutar el algoritmo 10 veces.
+
+ RESULTADOS
+
+ - Random Algorithm
+   1. Time for random algorithm is 22036370
+   2. Time for random algorithm is 24448592
+   3. Time for random algorithm is 23510446
+   4. Time for random algorithm is 29065604
+   5. Time for random algorithm is 22198325
+   6. Time for random algorithm is 26982505
+   7. Time for random algorithm is 21624516
+   8. Time for random algorithm is 31750970
+   9. Time for random algorithm is 27892473
+   10. Time for random algorithm is 30486663
+
+   - Así pues, el tiempo medio que tarda en ejecutarse el algoritmo random es de
+     25999646,4
+
+- Hill Climbing Algorithm
+
+  1. Time for Hill Climbing algorithm is 26067137
+  2. Time for Hill Climbing algorithm is 24738583
+  3. Time for Hill Climbing algorithm is 22845485
+  4. Time for Hill Climbing algorithm is 24538457
+  5. Time for Hill Climbing algorithm is 23597389
+  6. Time for Hill Climbing algorithm is 25274048
+  7. Time for Hill Climbing algorithm is 22340379
+  8. Time for Hill Climbing algorithm is 22096729
+  9. Time for Hill Climbing algorithm is 24660881
+  10. Time for Hill Climbing algorithm is 29461805
+
+  - Así pues, el tiempo medio que tarda en ejecutarse el algoritmo Hill Climbing
+    es de 24562089,3
+
+CONCLUSIONES
+
+- Vemos que, según las medias y los resultados individuales obtenidos, ambos
+  algoritmos tardan aproximadamente lo mismo en darnos 10 puntos.
+- A simple vista podríamos creer que el Hill Climbing, al ser más complejo,
+  debería de tardar más. Sin embargo, dado a la simpleza de las operaciones
+  internas que ejecuta, esto no es así.
