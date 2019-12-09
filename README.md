@@ -1,7 +1,7 @@
 # AI-Algorithm-Comparison
 
 # Tasks
-
+* [x] Implementar Algoritmos greedy y random.
 * [ ] Implementar PSO ¿Tenemos qué hacer más algoritmos?
 * [ ] Visualización en función del algoritmo usado. (Está listo, queda probarla cuando Nai termine) 
 * [ ] Registrar los tiempos que tarda cada algoritmo. Y compararlos
