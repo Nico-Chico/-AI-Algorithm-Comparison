@@ -2,7 +2,8 @@
 
 # Tasks
 * [x] Implementar Algoritmos greedy y random.
-* [ ] Implementar PSO ¿Tenemos qué hacer más algoritmos?
+* [ ] Implementar PSO
+* [ ] Implementar otras funciones de prueba
 * [ ] Visualización en función del algoritmo usado. (Está listo, queda probarla cuando Nai termine) 
 * [ ] Registrar los tiempos que tarda cada algoritmo. Y compararlos
 * [ ] Mostrar solución real, distancia entre estas y las soluciones.

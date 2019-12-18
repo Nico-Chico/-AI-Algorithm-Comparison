@@ -1,5 +1,5 @@
-s                                                                                                                                                               import java.util.Random;
-// import java.util.Map;
+import java.util.Random;
+import java.util.Map;
 
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
@@ -7,7 +7,7 @@ import java.io.PrintStream;
 public class Main {
 
     // 0 = greedy // 1 = random // 2 = PSO
-    private static int mode = 1;
+    private static int mode = 0;
 
     // Limits for the grid
     private static int minx = -10;
@@ -172,21 +172,21 @@ public class Main {
                 changed = true;
             }
 
-        double values[] = {x, y, f(x, y)};
+            double values[] = {x, y, f(x, y)};
 
-        if (!changed) {
-            return values;
-        } else {
+            if (!changed) {
+                return values;
+            } else {
 
-            double newZ = f(x, y);
-            int pos = 8;
+                double newZ = f(x, y);
+                int pos = 8;
 
-            for (int k = 0; k < newValues.length; k++) {
-                if (newValues[k] > newZ) {
-                    newZ = newValues[k];
-                    pos = k;
+                for (int k = 0; k < newValues.length; k++) {
+                    if (newValues[k] > newZ) {
+                        newZ = newValues[k];
+                        pos = k;
+                    }
                 }
-            }
 
             //System.out.println(newZ);
 
