@@ -18,12 +18,11 @@
 Actually PSO is not fully functional but But everything necessary to show the evolution of the particles is already implemented in functionPSO.py. It would be missing that java.main spits out the solutions of the PSO and that function.py read them correctly.
 
 
-
 # Tasks
-* [x] Implementar Algoritmos greedy y random.
-* [ ] Implementar PSO
-* [ ] Implementar otras funciones de prueba
-* [ ] Visualización en función del algoritmo usado. (Está listo, queda probarla cuando Nai termine) 
+* [ ] Fix PSO on Java
+* [ ] Fix main.java mode 0 bug
+* [ ] Make parser on python for PSO solutions file
+* [ ] Implements other test functions
 * [ ] Registrar los tiempos que tarda cada algoritmo. Y compararlos
 * [ ] Mostrar solución real, distancia entre estas y las soluciones.
 * [ ] Hacer una GUI donde incrustar el gráfico y donde podamos modificar los parámetros y lanzar los algoritmos. (Límites, Función, etc...) (Para esto se puede usar Tkinter creo.)
