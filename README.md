@@ -20,7 +20,7 @@ Actually PSO is not fully functional but But everything necessary to show the ev
 
 # Tasks
 * [ ] Fix PSO on Java
-* [ ] Fix main.java mode 0 bug
+* [ ] Fix main.java mode 0 bug (Sometimes this mode does not work properly)
 * [ ] Make parser on python for PSO solutions file
 * [ ] Implements other test functions
 * [ ] Registrar los tiempos que tarda cada algoritmo. Y compararlos
