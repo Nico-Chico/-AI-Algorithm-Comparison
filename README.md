@@ -1,5 +1,5 @@
 # AI-Algorithm-Comparison
-    This project pretend to be useful for the study of differents algorith used in Artificial Inteligence
+    This project pretend to be useful for the study of differents algorithms used in Artificial Inteligence
     
 # Structure
     The project consists of two pieces of software:
