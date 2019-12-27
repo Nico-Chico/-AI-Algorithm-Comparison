@@ -23,13 +23,24 @@ The project consists of two pieces of software:
  3. If you want to see how PSO will appear (when it is functional) run functionPSO.py - This file is for show the evolution of several points at the same time.
 
 ## Tasks
-* [ ] Fix PSO on Java
+
+**· On JAVA**
+* [ ] PSO on Java
 * [ ] Fix main.java mode 0 bug (Sometimes this mode does not work properly)
+* [ ] Implements other test functions 
+* [ ] Registrar los tiempos que tarda cada algoritmo. Y compararlos
+    
+
+
+
+**· On Python**
 * [ ] Make parser on python for PSO solutions file
 * [ ] Implements other test functions
-* [ ] Registrar los tiempos que tarda cada algoritmo. Y compararlos
+* [ ] Leer los tiempos de cada algoritmo, mostrarlos.
 * [ ] Mostrar solución real, distancia entre estas y las soluciones.
-* [ ] Hacer una GUI donde incrustar el gráfico y donde podamos modificar los parámetros y lanzar los algoritmos. (Límites, Función, etc...) (Para esto se puede usar Tkinter creo.)
-* [ ] Final Presentation
+* [ ] GUI(Dudo que de tiempo)
 
 
+
+
+**· FINAL PRESENTATION**
