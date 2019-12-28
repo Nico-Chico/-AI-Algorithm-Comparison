@@ -9,7 +9,7 @@ import java.io.PrintStream;
 public class Main {
 
     // 0 = greedy // 1 = random // 2 = PSO
-    private static int mode = 2;
+    private static int mode = 0;
 
     // Limits for the grid
     private static int minx = -10;
@@ -45,7 +45,7 @@ public class Main {
     private static int yoffset = ((maxy - miny)+1)+miny;
 
     // Number of iterations per algorithm
-    private static int nits = 2;
+    private static int nits = 10;
 
     public static void main(String[] args) {
 
@@ -74,8 +74,8 @@ public class Main {
 
                 for (int i = 0; i < nits; ++i) {
                     //Random int between min and max: (int)(Math.random()*((max - min)+1)+min)
-                    int x = new Random().nextInt(maxx-minx)+minx;
-                    int y = new Random().nextInt(maxy-miny)+miny;
+                    double x = new Random().nextInt(maxx-minx)+minx;
+                    double y = new Random().nextInt(maxy-miny)+miny;
                     //System.out.println(x);
                     //System.out.println(y);
                     //System.out.println(z);
@@ -128,17 +128,18 @@ public class Main {
 //system.out.println("1")
 
     //Maximizing Greedy Algorithm
-    //Could have done with a priority queue, checking all the point in the grid.
-    private static double[] greedy(int x, int y, int i) {
+    //Could have done with a priority queue, checking all the points in the grid.
+    private static double[] greedy(double x, double y, double i) {
         //System.out.println("NEW CALL");
         double z = f(x, y);
 
         System.out.println(i + ") " + x + " " + y + " " + z);
 
-        int x1 = x+1;
-        int y1 = y+1;
-        int x2 = x-1;
-        int y2 = y-1;
+        double offset = new Random().nextDouble();
+        double x1 = x+offset;
+        double y1 = y+offset;
+        double x2 = x-offset;
+        double y2 = y-offset;
 
         double newValues[] = {0,0,0,0,0,0,0,0};
 
@@ -253,8 +254,8 @@ public class Main {
 
     private static double random() {
 
-        int x = new Random().nextInt(xoffset);
-        int y = new Random().nextInt(yoffset);
+        double x = new Random().nextInt(xoffset);
+        double y = new Random().nextInt(yoffset);
         double z = f(x, y);
         int i = 0;
 
@@ -274,7 +275,7 @@ public class Main {
     }
 
 
-    private static double f(int x, int y) {
+    private static double f(double x, double y) {
         return Math.sin(Math.sqrt( (Math.pow(x, 2)) + (Math.pow(y, 2)) ));
     }
 

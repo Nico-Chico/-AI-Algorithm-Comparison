@@ -41,7 +41,7 @@ public class Particle {
     // Phi p parameter
     private static double fp = 0.5;
     // Phi g parameter
-    private static double fg = 1.5;
+    private static double fg = 0.5;
 
     public Point getG() {
         return g;

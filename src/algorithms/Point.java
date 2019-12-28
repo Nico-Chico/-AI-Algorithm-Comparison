@@ -2,8 +2,8 @@ package algorithms;
 
 public class Point {
 
-    private static double x;
-    private static double y;
+    private double x;
+    private double y;
 
     // Default constructor
     public Point() {}
@@ -18,7 +18,7 @@ public class Point {
         return x;
     }
 
-    public static void setX(double nx) {
+    public void setX(double nx) {
         x = nx;
     }
 
@@ -26,7 +26,7 @@ public class Point {
         return y;
     }
 
-    public static void setY(double ny) {
+    public void setY(double ny) {
         y = ny;
     }
 }

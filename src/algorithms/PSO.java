@@ -31,7 +31,7 @@ public class PSO {
     //Number of particles
     private static int np = -1;
     //Algorithm threshold (if some Particle reaches it, the solution is considered to be found)
-    private static double thresh = 0.95;
+    private static double thresh = 0.97;
     //Number of dimensions
     private static int ndim = 2;
     //Best global solution
@@ -110,6 +110,7 @@ public class PSO {
         int i = 0;
         // TODO: establish better criteria to stop
         while (i < 30) {
+        // while (solution < thresh) {
             for (int j = 0; j < np; ++j) {
 
                 for (int d = 0; d < ndim; ++d) {
