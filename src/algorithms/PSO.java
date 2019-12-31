@@ -37,6 +37,8 @@ public class PSO {
     //Best global solution
     private static Point g;
 
+    private static double[][] output;
+
     public static Point getG() {
         return g;
     }
@@ -44,6 +46,10 @@ public class PSO {
     public static void setNP(int npt) {
         np = npt;
         swarm = new Particle [np];
+    }
+
+    public double[][] getOutput() {
+        return output;
     }
 
     /*private static double velocityInitialization() {
@@ -88,12 +94,16 @@ public class PSO {
                 } else {
                     if (f(point) > f(g)) g = point;
                 }
+
             }
 
             // Initializing Particles global maximum
             for (Particle p : swarm) {
                 p.setG(g);
             }
+
+            // Output initialization
+            output = new double[300][4];
 
         }
         else {
@@ -107,7 +117,8 @@ public class PSO {
     public static Point run() {
         Point bestPoint = particlesInitialization();
         double solution = (f(bestPoint));
-        int i = 0;
+        int i = 0; // i = timestep
+        int tp = 1; // op = output position
         // TODO: establish better criteria to stop
         while (i < 30) {
         // while (solution < thresh) {
@@ -124,25 +135,49 @@ public class PSO {
                         swarm[j].setSpeedY(rpy, rgy);
                     }
                 }
-                System.out.println("Particle " + j + " has position " + swarm[j].getX().getX() + " " + swarm[j].getX().getY() );
+
+                /*if (i == 0) {
+                    output[j][0] = i;
+                    output[j][1] = swarm[j].getX().getX();
+                    output[j][2] = swarm[j].getX().getY();
+                }*/
+
+                //System.out.println("Particle " + j + " has position " + swarm[j].getX().getX() + " " + swarm[j].getX().getY() );
                 swarm[j].updatePosition();
-                System.out.println("Particle " + j + " has position " + swarm[j].getX().getX() + " " + swarm[j].getX().getY() );
-                System.out.println(f(swarm[j].getX()));
+                //System.out.println("Particle " + j + " has position " + swarm[j].getX().getX() + " " + swarm[j].getX().getY() );
+                //System.out.println(f(swarm[j].getX()));
+                if (tp < 300) {
+                    output[tp][0] = i;
+                    output[tp][1] = j;
+                    output[tp][2] = swarm[j].getX().getX();
+                    output[tp][3] = swarm[j].getX().getY();
+                    ++tp;
+                }
+                //System.out.println("Timestesp " + i + " Particle " + j + " Position " + swarm[j].getX().getX() + " " + swarm[j].getX().getY());
+                /*output[j][0] = i+1;
+                output[j][1] = swarm[j].getX().getX();
+                output[j][2] = swarm[j].getX().getY();*/
+
                 if (f(swarm[j].getX()) > f(swarm[j].getP())) {
                     swarm[j].setP(swarm[j].getX());
                     if (f(swarm[j].getP()) > f(swarm[j].getG())) {
                         swarm[j].setG(swarm[j].getP());
                         g = swarm[j].getP();
-                        solution = f(g);
+                        //solution = f(g);
                     }
                 }
-                System.out.println(f(swarm[j].getP()));
+                //System.out.println(f(swarm[j].getP()));
             }
             ++i;
         }
-        //rSystem.out.println(i);
+        readOutput();
         return g;
     }
 
+    public static void readOutput() {
+        for (int i = 0; i < output.length; ++i) {
+            System.out.println(output[i][1] + " " + output[i][0] + " " + output[i][2] + " " + output[i][3]);
+        }
+    }
 
 }

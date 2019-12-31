@@ -95,12 +95,12 @@ public class Particle {
 
     public void setSpeedX(double rp, double rg) {
         speedX = w * speedX + fp * rp * (p.getX() - x.getX()) + fg * rg * (PSO.getG().getX() - x.getX());
-        System.out.println("Velocity of X: " + speedX);
+        //System.out.println("Velocity of X: " + speedX);
     }
 
     public void setSpeedY(double rp, double rg) {
         speedY = w * speedY + fp * rp * (p.getY() - x.getY()) + fg * rg * (PSO.getG().getY() - x.getY());
-        System.out.println("Velocity of Y: " + speedY);
+        //System.out.println("Velocity of Y: " + speedY);
     }
 
     /*public void checkPosition() {

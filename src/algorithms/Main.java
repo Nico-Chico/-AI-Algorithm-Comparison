@@ -9,7 +9,7 @@ import java.io.PrintStream;
 public class Main {
 
     // 0 = greedy // 1 = random // 2 = PSO
-    private static int mode = 0;
+    private static int mode = 2;
 
     // Limits for the grid
     private static int minx = -10;
@@ -108,10 +108,10 @@ public class Main {
                 long start = System.nanoTime();
                 PSO.setNP(nits);
                 Point g = PSO.run();
-                System.out.println("Best solution for PSO is point (" + g.getX() + ", " + g.getY() + ") = " + f(g));
+                //System.out.println("Best solution for PSO is point (" + g.getX() + ", " + g.getY() + ") = " + f(g));
                 long elapsedTime = System.nanoTime() - start;
                 // Printing random execution time
-                System.out.println("Time for PSO algorithm is " + elapsedTime);
+                //System.out.println("Time for PSO algorithm is " + elapsedTime);
 
             }
             System.out.println("END");
@@ -257,9 +257,16 @@ public class Main {
         double x = new Random().nextInt(xoffset);
         double y = new Random().nextInt(yoffset);
         double z = f(x, y);
+
+        //
+        double bestX = x;
+        double bestY = y;
+        //
+
         int i = 0;
 
         System.out.println(i + ") " + x + " " + y + " " + z);
+        System.out.println(i + ") " + bestX + " " + bestY);
 
 
         for (i = 1; i < nits; ++i) {
@@ -267,9 +274,12 @@ public class Main {
             x = new Random().nextInt(xoffset);
             y = new Random().nextInt(yoffset);
             if (f(x, y) > z) {
+                bestX = x;
+                bestY = y;
                 z = f(x, y);
             }
             System.out.println(i + ") " + x + " " + y + " " + f(x, y));
+            System.out.println(i + ") " + bestX + " " + bestY);
         }
         return z;
     }
