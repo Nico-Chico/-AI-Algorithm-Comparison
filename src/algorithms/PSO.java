@@ -176,7 +176,7 @@ public class PSO {
 
     public static void readOutput() {
         for (int i = 0; i < output.length; ++i) {
-            System.out.println(output[i][1] + " " + output[i][0] + " " + output[i][2] + " " + output[i][3]);
+            System.out.println((int)output[i][1] + " " + output[i][0] + " " + output[i][2] + " " + output[i][3]);
         }
     }
 
