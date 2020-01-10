@@ -81,12 +81,12 @@ public class PSO {
                 // Upper bound
                 double ub = Math.abs(getMaxx() - getMinx());
                 double vX = lb + new Random().nextDouble()*(ub - lb);
-                System.out.println("X Velocity of " + i + ": " + vX);
+                //System.out.println("X Velocity of " + i + ": " + vX);
                 double vY = lb + new Random().nextDouble()*(ub - lb);
-                System.out.println("Y Velocity of " + i + ": " + vY);
+                //System.out.println("Y Velocity of " + i + ": " + vY);
                 // Particle creation
                 swarm[i] = new Particle(point, point, vX, vY);
-                System.out.println("Particle " + i + " has position " + swarm[i].getX().getX() + " " + swarm[i].getX().getY() );
+                //System.out.println("Particle " + i + " has position " + swarm[i].getX().getX() + " " + swarm[i].getX().getY() );
 
                 // Global maximum initialization
                 if (i == 0) {
