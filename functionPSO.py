@@ -36,18 +36,13 @@ maxZlim = 8
 line = fp.readline()
 while line != "END\n":
     s = line.split(') ')
-    print(s)
-    # ID = int(s[0])
-    # s2 = s[1].split()
-    # t = s2[0]
-    # coordx = s2[1]
-    # coordy = s2[2]
-    # coordz = s2[3]
-    # print(ID, t, coordx)
+    ID = int(s[0])
+    s2 = s[1].split()
+    t = int(s2[0])
+    coords = [float(s2[1]), float(s2[2]), float(s2[3])]
+    print(ID, t, coords)
+    data[id, t, coords]
     line = fp.readline()
-
-
-
 
 
 
