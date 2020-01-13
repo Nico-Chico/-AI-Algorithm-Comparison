@@ -20,6 +20,11 @@ RESULTADOS ESPERADOS
   tarden el mismo tiempo en completarse, ya que solamente consiste en generar puntos
   aleatorios para después compararlos y en cada timestep elegir el mejor.
 
+- En el caso del PSO esperamos que siempre tarde aproximadamente lo mismo ya que en cada iteración
+  se siguen los mismos pasos sólo que intentando que el resultado en cada una de ellas sea
+  una mejora del anterior. Aún así es de esperar que sea el que más tarda ya que es
+  el más complejo de ejecutar y el que tiene más operaciones.
+
 EXPERIMENTACIÓN
 - La experimentación consistirá en ejecutar cada algoritmo un número concreto de iteraciones,
   que se corresponde con el valor de la variable global nits en el programa (10 por defecto).
@@ -27,9 +32,9 @@ EXPERIMENTACIÓN
   de manera que restándolos obtendremos el tiempo que ha tardado cada algoritmo en ejecutarse
   por completo en nuestro programa.
 
-- Si la variable global mode tiene valor igual a 1, estaremos midiendo el tiempo del algoritmo
-  random. De otro modo, si la variable mode tiene valor igual a 0, calcularemos el tiempo
-  de ejecución para el algoritmo greedy/Hill Climbing.
+- Si la variable mode tiene valor igual a 0, calcularemos el tiempo de ejecución para el algoritmo
+  greedy/Hill Climbing. De otro modo, si la variable global mode tiene valor igual a 1, estaremos
+  midiendo el tiempo del algoritmo random. Si el modo es igual a 2, se ejecutará el PSO.
 
 - Para cada conjunto de iteraciones repetiremos el proceso 10 veces, de manera que
   para el resultado final haremos la media de los 10 resultados para saber cuánto
@@ -68,10 +73,30 @@ EXPERIMENTACIÓN
   - Así pues, el tiempo medio que tarda en ejecutarse el algoritmo Hill Climbing
     es de 24562089,3
 
+- Particle Swarm Optimization Algorithm
+
+  1. Time for PSO algorithm is 292461942
+  2. Time for PSO algorithm is 93392858
+  3. Time for PSO algorithm is 116866325
+  4. Time for PSO algorithm is 122364946
+  5. Time for PSO algorithm is 119079989
+  6. Time for PSO algorithm is 94953016
+  7. Time for PSO algorithm is 84725689
+  8. Time for PSO algorithm is 89804891
+  9. Time for PSO algorithm is 115131112
+  10. Time for PSO algorithm is 103913003
+
+- Así pues, el tiempo medio que tarda en ejecutarse el algoritmo PSO
+  es de 123269377,1
+
 CONCLUSIONES
 
-- Vemos que, según las medias y los resultados individuales obtenidos, ambos
-  algoritmos tardan aproximadamente lo mismo en darnos 10 puntos.
-- A simple vista podríamos creer que el Hill Climbing, al ser más complejo,
-  debería de tardar más. Sin embargo, dado a la simpleza de las operaciones
+- Vemos que, según las medias y los resultados individuales obtenidos, los dos primeros
+  algoritmos tardan aproximadamente lo mismo en darnos 10 puntos. Como era de esperar, el
+  PSO es el que muestra más diferencia, tardando hasta 50 veces más.
+- A simple vista podríamos creer que el Hill Climbing, al ser más complejo que el random,
+  debería de tardar más que este. Sin embargo, dado a la simpleza de las operaciones
   internas que ejecuta, esto no es así.
+- Cabe destacar que notamos una mayor diferencia de tiempo de ejecución entre iteraciones
+  en el PSO. Esto es debido a la complejidad del código, ya que existen muchos parámetros
+  y condiciones que pueden ralentizar o alargar una ejecución.
