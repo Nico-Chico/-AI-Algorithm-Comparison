@@ -15,8 +15,6 @@ The project consists of two pieces of software:
         Greedy and Random algoritms solutions must be showed with function.py but PSO solutions need to be showed by functionPSO.py
         We will combine this files later to make the program simpler.
 
-*Actually PSO is not fully functional but But everything necessary to show the evolution of the particles is already implemented in functionPSO.py. It would be missing that java.main spits out the solutions of the PSO and that function.py read them correctly.*
-
 ## How to run the program?
  1. First you need run main.java for generate the solutions file. If you want change the used algorithm open this code and change the "mode" variable. To 0, 1 or 2
  2. Later you run function.py to show this solutions.
@@ -25,8 +23,6 @@ The project consists of two pieces of software:
 ## Tasks
 
 **· On JAVA**
-* [ ] PSO on Java
-* [ ] Fix main.java mode 0 bug (Sometimes this mode does not work properly)
 * [ ] Implements other test functions 
 * [ ] Registrar los tiempos que tarda cada algoritmo. Y compararlos
     
@@ -34,7 +30,6 @@ The project consists of two pieces of software:
 
 
 **· On Python**
-* [ ] Make parser on python for PSO solutions file
 * [ ] Implements other test functions
 * [ ] Leer los tiempos de cada algoritmo, mostrarlos.
 * [ ] Mostrar solución real, distancia entre estas y las soluciones.
