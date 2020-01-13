@@ -72,12 +72,10 @@ while line != "END\n":
         transp = 0.0
     scatPrev.remove() # Clear the points on the screen
     scatNow.remove() # Clear the points on the screen
-    s2 = s[1].split()
-    t = int(s2[0])
-    coords = [float(s2[1]), float(s2[2]), float(s2[3])]
+    coords = [float(n) for n in s[1].split()]
     print(ID, coords)
     scatPrev = ax.scatter(prev_coords[0], prev_coords[1], prev_coords[2], s=40, c=color, alpha=transp) #Update the plot becouse we are in interactive mode
-    scatNow = ax.scatter(coords[0], coords[1], coords[2], s=90, c=color) #Update the plot becouse we are in interactive mode
+    scatNow = ax.scatter(coords[0], coords[1], coords[2], s=70, c=color) #Update the plot becouse we are in interactive mode
     prev_coords = coords
     prevID = ID
     plt.pause(0.5)
