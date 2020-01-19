@@ -6,14 +6,14 @@ from mpl_toolkits.mplot3d import Axes3D
 # Reading data
 # Open solutions file and reading limits and mode
 fp = open('solutions.txt', 'r')
-minXlim = int(fp.readline()) - 2
-maxXlim = int(fp.readline()) + 2
-minYlim = int(fp.readline()) - 2
-maxYlim = int(fp.readline()) + 2
+minXlim = int(fp.readline()) - 4
+maxXlim = int(fp.readline()) + 4
+minYlim = int(fp.readline()) - 4
+maxYlim = int(fp.readline()) + 4
 mode = int(fp.readline())
 particles= int(fp.readline())
 timeSteps = int(fp.readline())
-minZlim = -8
+minZlim = 8
 maxZlim = 8
 
 #Setting figure and axis
