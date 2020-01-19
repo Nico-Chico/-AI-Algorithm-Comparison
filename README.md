@@ -20,15 +20,10 @@ The project consists of two pieces of software:
 ## Tasks
 
 **· On JAVA**
-
-* [ ] Print
-* [ ] LastBest (LastBestGlobal on PSO)
-* [ ] Print for PSO:
-* [ ] OptimalTime (Con IdealBest * 0.1%)
-* [ ] TotalTime
+* [ ] For All: LastBest (LastBestGlobal on PSO)
+* [ ] For All: OptimalTime (Con IdealBestGlobal * 0.1%(Umbral))
+* [ ] For All: TotalTime
 * [ ] Implements other test functions 
-
-    
 
 
 
