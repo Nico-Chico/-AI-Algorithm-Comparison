@@ -40,6 +40,22 @@ Z = np.sin(np.sqrt(X**2 + Y**2))
 # Plot the surface.
 surf = ax.plot_surface(X, Y, Z, cmap=cm.coolwarm, linewidth=0, antialiased=True, alpha=.3)
 
+# Trext pruebas
+# Showing Text
+ax.text(0,0,-20,'red',color='red')
+label = "{:.2f}".format(y)
+
+    plt.annotate(label, # this is the text
+                 (0, 0, 0), # this is the point to label
+                 textcoords="offset points", # how to position the text
+                 xytext=(0,10), # distance from text to points (x,y)
+                 ha='center') # horizontal alignment can be left, right or center
+
+
+
+
+
+
 if mode == 0 or mode == 1:
     ### MODE X - Reading rest of the file until find END
     #Plotting GREEDY solutions on the file
@@ -104,15 +120,17 @@ elif mode == 2:
         data[ID][t][2] = coords[2]
         line = fp.readline()
 
-
+    
     # Plotting
+    scat = ax.scatter(0, 0, 0, s=0) #Update the plot becouse we are in interactive mode
     for t in list(range(timeSteps)):
+        scat.remove()
         x = data[:,t,0]
         y = data[:,t,1]
         z = data[:,t,2]
         scat = ax.scatter(x, y, z, s=80, c=colors) #Update the plot becouse we are in interactive mode
-        plt.pause(0.5)
-        scat.remove()
+        plt.pause(0.2)
+
 
 plt.show(block = True) # To keep the plot until you close it.
 fp.close()
