@@ -40,16 +40,16 @@ Z = np.sin(np.sqrt(X**2 + Y**2))
 # Plot the surface.
 surf = ax.plot_surface(X, Y, Z, cmap=cm.coolwarm, linewidth=0, antialiased=True, alpha=.3)
 
-# Trext pruebas
-# Showing Text
-ax.text(0,0,-20,'red',color='red')
-label = "{:.2f}".format(y)
+# # Trext pruebas
+# # Showing Text
+# ax.text(0,0,-20,'red',color='red')
+# label = "{:.2f}".format(y)
 
-    plt.annotate(label, # this is the text
-                 (0, 0, 0), # this is the point to label
-                 textcoords="offset points", # how to position the text
-                 xytext=(0,10), # distance from text to points (x,y)
-                 ha='center') # horizontal alignment can be left, right or center
+#     plt.annotate(label, # this is the text
+#                  (0, 0, 0), # this is the point to label
+#                  textcoords="offset points", # how to position the text
+#                  xytext=(0,10), # distance from text to points (x,y)
+#                  ha='center') # horizontal alignment can be left, right or center
 
 
 
