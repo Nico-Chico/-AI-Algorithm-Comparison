@@ -17,7 +17,7 @@ minZlim = -8
 maxZlim = 8
 
 #Setting figure and axis
-fig = plt.figure()#fig = plt.figure(figsize=(16,12))
+fig = plt.figure(figsize=(20,16))
 ax = fig.gca(projection='3d')
 
 ax.set_xlim([minXlim,maxXlim])
@@ -39,7 +39,6 @@ elif mode == 1:
 elif mode == 2:
     title = "Using Particle Swarm Optimization"
 fig.suptitle(title, fontsize=14, fontweight='bold')
-ax.text(0, 0, 0, "Central point", size=8, zorder=1, color='k')
 
 
 
@@ -86,7 +85,7 @@ if mode == 0 or mode == 1:
         scatNow = ax.scatter(coords[0], coords[1], coords[2], s=60, c=color) #Update the plot becouse we are in interactive mode
         prev_coords = coords
         prevID = ID
-        plt.pause(0.5)
+        plt.pause(0.3)
         line = fp.readline()
     print("End of the file")
 
@@ -128,15 +127,21 @@ elif mode == 2:
         y = data[:,t,1]
         z = data[:,t,2]
         scat = ax.scatter(x, y, z, s=60, c=colors) #Update the plot becouse we are in interactive mode
-        plt.pause(0.2)
+        plt.pause(0.02)
 
 # Ending
-totalTime = str(0.4321)
-optimalTime = str(0.1234)
-ax.set_title("Total time: " + totalTime + " | Optimal time: " + optimalTime)
-#ax.text(0, 0, 0, "Central point", size=4, zorder=1, color='k')
+line = fp.readline().replace('\n', '') #Removing newline
+s = line.split(': ')
+totalTime = s[1]
+line = fp.readline().replace('\n', '') #Removing newline
+s = line.split(': ')
+optimalTime = s[1]
 
+
+ax.set_title("Total time: " + totalTime + "ns | Optimal time: " + optimalTime + "ns")
+ax.text(0, 0, 0, "Central point", size=4, zorder=1, color='k')
+fp.close()
+plt.ioff()
 plt.show(block = True) # To keep the plot until you close it.
 
-fp.close()
 
