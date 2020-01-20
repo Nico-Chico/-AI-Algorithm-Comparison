@@ -18,7 +18,6 @@ The project consists of two pieces of software:
  2. We use "matplotlib" library in his last stable version. To install it without problems: `python3 -m pip install -U matplotlib`
 
 
-
 ## How to run the program?
  1. First you need run MaximizationProblem.jar for generate the solutions file.
  2. Later you run show.py to show this solutions.
