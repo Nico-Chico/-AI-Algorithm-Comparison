@@ -137,9 +137,9 @@ line = fp.readline().replace('\n', '') #Removing newline
 s = line.split(': ')
 optimalTime = s[1]
 
-
 ax.set_title("Total time: " + totalTime + "ns | Optimal time: " + optimalTime + "ns")
 ax.text(0, 0, 0, "Central point", size=4, zorder=1, color='k')
+
 fp.close()
 plt.ioff()
 plt.show(block = True) # To keep the plot until you close it.
