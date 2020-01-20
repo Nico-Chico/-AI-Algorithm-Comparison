@@ -39,9 +39,9 @@ public class Particle {
     // Omega parameter
     private static double w = 1;
     // Phi p parameter
-    private static double fp = 0.5;
+    private static double fp;
     // Phi g parameter
-    private static double fg = 0.5;
+    private static double fg;
 
     public Point getG() {
         return g;
@@ -50,6 +50,15 @@ public class Particle {
     public void setG(Point g) {
         this.g = g;
     }
+
+    public static void setFg(double fgs) {
+        fg = fgs;
+    }
+
+    public static void setFp(double fps) {
+        fp = fps;
+    }
+
 
     // Default constructor
     public Particle() {}

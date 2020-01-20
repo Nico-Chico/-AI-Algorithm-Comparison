@@ -1,21 +1,25 @@
 package algorithms;
 
 import java.util.Random;
-// import java.util.Map;
 
 import java.io.FileNotFoundException;
 import java.io.PrintStream;
+import java.util.Scanner;
+import java.io.*;
 
 public class Main {
 
-    // 0 = greedy // 1 = random // 2 = PSO
-    private static int mode = 2;
+    // 0 = greedy / Hill Climbing // 1 = random // 2 = PSO
+    private static int mode;
 
     // Limits for the grid
-    private static int minx = -10;
-    private static int maxx = 10;
-    private static int miny = -10;
-    private static int maxy = 10;
+    private static int minx;
+    private static int maxx;
+    private static int miny;
+    private static int maxy;
+
+    // Solution threshold
+    public static double thresh;
 
     public static int getMinx() {
         return minx;
@@ -44,13 +48,42 @@ public class Main {
     private static int xoffset = ((maxx - minx)+1)+minx;
     private static int yoffset = ((maxy - miny)+1)+miny;
 
-    // Number of iterations per algorithm
-    private static int nits = 10;
+    // Number of iterations per algorithm (number of particles)
+    private static int nits;
+
+    private static long elapsedTime;
+
+    private static long findingTime;
+
+    public static long time[] = {-1};
+
+    // Starting counting time
+    public static long start;
+
+    // Best solution
+    public static double g;
 
     public static void main(String[] args) {
 
         try
         {
+            // UNCOMMENT NEXT LINE FOR MANUAL INPUT
+            // Scanner scanner = new Scanner(System.in);
+            Scanner scanner = new Scanner(new FileReader("./input.txt"));
+            System.out.println("Enter left limit for X grid");
+            minx = scanner.nextInt();
+            System.out.println("Enter right limit for X grid");
+            maxx = scanner.nextInt();
+            System.out.println("Enter left limit for Y grid");
+            miny = scanner.nextInt();
+            System.out.println("Enter right limit for Y grid");
+            maxy = scanner.nextInt();
+            System.out.println("Enter mode: (note: 0 for Hill Climbing // 1 for Random // 2 for PSO");
+            mode = scanner.nextInt();
+            System.out.println("Enter number of particles");
+            nits = scanner.nextInt();
+            System.out.println("Enter threshold for finding a solution");
+            thresh = scanner.nextDouble();
             // Save original out stream.
             PrintStream originalOut = System.out;
             // Create a new file output stream.
@@ -67,24 +100,40 @@ public class Main {
 
                 // Print flag to determine algorithm
                 System.out.println(0);
+                //Print empty parameter
+                System.out.println(0);
+                //Print empty parameter
+                System.out.println(0);
 
+                System.setOut(originalOut);
+                System.out.println("Enter the number of maximum iterations (between 1 and 800, to avoid infinite loop when finding a plateau)");
+                int maxit = scanner.nextInt();
+                System.out.println("Enter the value for the step value. NOTE: write with comma, not point");
+                double step = scanner.nextDouble();
+
+                // Save original out stream.
+                originalOut = System.out;
+                // Redirect standard out to file.
+                System.setOut(fileOut);
 
                 // Start counting time
-                long start = System.nanoTime();
+                start = System.nanoTime();
 
                 for (int i = 0; i < nits; ++i) {
                     //Random int between min and max: (int)(Math.random()*((max - min)+1)+min)
                     double x = new Random().nextInt(maxx-minx)+minx;
                     double y = new Random().nextInt(maxy-miny)+miny;
+
+                    g = f(x, y);
                     //System.out.println(x);
                     //System.out.println(y);
                     //System.out.println(z);
 
-                    double values[] = greedy(x, y, i);
-
+                    double values[] = greedy(x, y, i, 0, 0, maxit, step, time);
+                    findingTime = time[0] - start;
                     double z = f(x, y);
                 }
-                long elapsedTime = System.nanoTime() - start;
+                elapsedTime = System.nanoTime() - start;
                 // Printing random execution time
                 //System.out.println("Time for Hill Climbing algorithm is " + elapsedTime);
 
@@ -93,10 +142,15 @@ public class Main {
             else if (mode == 1) {
                 // Print flag to determine algorithm
                 System.out.println(1);
+                //Print empty parameter
+                System.out.println(0);
+                //Print empty parameter
+                System.out.println(0);
                 // Start counting time
-                long start = System.nanoTime();
-                double maxz = random();
-                long elapsedTime = System.nanoTime() - start;
+                start = System.nanoTime();
+                random(time);
+                elapsedTime = System.nanoTime() - start;
+                findingTime = time[0] - start;
                 // Printing random execution time
                 //System.out.println("Time for random algorithm is " + elapsedTime);
             }
@@ -105,16 +159,39 @@ public class Main {
                 // Print flag to determine algorithm
                 System.out.println(2);
                 // Start counting time
-                long start = System.nanoTime();
+                start = System.nanoTime();
+                System.setOut(originalOut);
+                System.out.println("Enter the value for the fp parameter (between 0 and 1) NOTE: write with comma, not point");
+                double fp = scanner.nextDouble();
+                Particle.setFp(fp);
+                System.out.println("Enter the value for the fg parameter (between 0 and 1) NOTE: write with comma, not point");
+                double fg = scanner.nextDouble();
+                Particle.setFg(fg);
+                System.out.println("Enter the number of steps (timesteps)");
+                int ttp = scanner.nextInt();
+                PSO.setTTP(ttp);
+                // Save original out stream.
+                originalOut = System.out;
+
+                // Redirect standard out to file.
+                System.setOut(fileOut);
+                // Printing number of particles
+                System.out.println(nits);
+                // Printing number of timesteps
+                System.out.println(ttp);
                 PSO.setNP(nits);
-                Point g = PSO.run();
+                g = PSO.run(time, thresh);
                 //System.out.println("Best solution for PSO is point (" + g.getX() + ", " + g.getY() + ") = " + f(g));
-                long elapsedTime = System.nanoTime() - start;
+                elapsedTime = System.nanoTime() - start;
+                findingTime = time[0] - start;
                 // Printing random execution time
                 //System.out.println("Time for PSO algorithm is " + elapsedTime);
 
             }
             System.out.println("END");
+            System.out.println("TOTAL TIME: " + elapsedTime);
+            System.out.println("POINT TIME: " + findingTime);
+            System.out.println("BEST: " + g);
 
             // Do not forget set original output and error stream back again.
             System.setOut(originalOut);
@@ -129,163 +206,167 @@ public class Main {
 
     //Maximizing Greedy Algorithm
     //Could have done with a priority queue, checking all the points in the grid.
-    private static double[] greedy(double x, double y, double i) {
-        //System.out.println("NEW CALL");
-        double z = f(x, y);
-
-        System.out.println(i + ") " + x + " " + y + " " + z);
-
-        double offset = new Random().nextDouble();
-        double x1 = x+offset;
-        double y1 = y+offset;
-        double x2 = x-offset;
-        double y2 = y-offset;
-
-        double newValues[] = {0,0,0,0,0,0,0,0};
-
-        //boolean found = false;
-
-        // Checking plot limits (-5, 5)
-        //while(!found) {
-
-        boolean changed = false;
-
-        if (x1 > minx && x1 < maxx) {
-            //System.out.println(x1 + " " + f(x1,y));
-            if (f(x1, y) >= z) {
-                newValues[1] = f(x1, y);
-                changed = true;
-            }
-
-            if (y1 > miny && y1 < maxy) {
-                //System.out.println(f(x1,y1));
-                if (f(x1, y1) >= z) {
-                    newValues[2] = f(x1, y1);
-                    changed = true;
-                }
-            }
-
-            if (y2 > miny && y2 < maxy) {
-                //System.out.println(f(x1,y2));
-                if (f(x1, y2) >= z) {
-                    newValues[3] = f(x1, y2);
-                    changed = true;
-                }
-            }
-        }
-        if (x2 > minx && x2 < maxx) {
-            if (f(x2, y) >= z) {
-                newValues[4] = f(x2, y);
-                changed = true;
-            }
-
-            if (y1 > miny && y1 < maxy) {
-                if (f(x2, y1) >= z) {
-                    newValues[5] = f(x2, y1);
-                    changed = true;
-                }
-            }
-
-            if (y2 > miny && y2 < maxy) {
-                if (f(x2, y2) >= z) {
-                    newValues[6] = f(x2, y2);
-                    changed = true;
-                }
-            }
-        }
-        if (y1 > miny && y1 < maxy && f(x, y1) >= z) {
-            newValues[7] = f(x, y1);
-            changed = true;
-        }
-        if (y2 > miny && y2 < maxy && f(x, y2) >= z) {
-            newValues[0] = f(x, y2);
-            changed = true;
-        }
-
+    private static double[] greedy(double x, double y, double i, int timestep, int it, int maxit, double offset, long[] time) {
         double values[] = {x, y, f(x, y)};
+        if (it < maxit) {
+            ++it;
+            double z = f(x, y);
+            if (z > g) g = z;
+            if (time[0] == -1 && z >= thresh) time[0] = System.nanoTime();
+            System.out.println((int) i + ") " + timestep + " " + x + " " + y + " " + z);
+            ++timestep;
+            //double offset = new Random().nextDouble();
+            double x1 = x + offset;
+            double y1 = y + offset;
+            double x2 = x - offset;
+            double y2 = y - offset;
 
-        if (!changed) {
-            return values;
-        } else {
+            double newValues[] = {0, 0, 0, 0, 0, 0, 0, 0};
 
-            double newZ = f(x, y);
-            int pos = 8;
+            //boolean found = false;
 
-            for (int k = 0; k < newValues.length; k++) {
-                if (newValues[k] > newZ) {
-                    newZ = newValues[k];
-                    pos = k;
+            // Checking plot limits (-5, 5)
+            //while(!found) {
+
+            boolean changed = false;
+
+            if (x1 > minx && x1 < maxx) {
+                //System.out.println(x1 + " " + f(x1,y));
+                if (f(x1, y) >= z) {
+                    newValues[1] = f(x1, y);
+                    changed = true;
+                }
+
+                if (y1 > miny && y1 < maxy) {
+                    //System.out.println(f(x1,y1));
+                    if (f(x1, y1) >= z) {
+                        newValues[2] = f(x1, y1);
+                        changed = true;
+                    }
+                }
+
+                if (y2 > miny && y2 < maxy) {
+                    //System.out.println(f(x1,y2));
+                    if (f(x1, y2) >= z) {
+                        newValues[3] = f(x1, y2);
+                        changed = true;
+                    }
                 }
             }
+            if (x2 > minx && x2 < maxx) {
+                if (f(x2, y) >= z) {
+                    newValues[4] = f(x2, y);
+                    changed = true;
+                }
 
-            //System.out.println(newZ);
+                if (y1 > miny && y1 < maxy) {
+                    if (f(x2, y1) >= z) {
+                        newValues[5] = f(x2, y1);
+                        changed = true;
+                    }
+                }
 
-            switch (pos) {
-                case 1:
-                    return greedy(x1, y, i);
+                if (y2 > miny && y2 < maxy) {
+                    if (f(x2, y2) >= z) {
+                        newValues[6] = f(x2, y2);
+                        changed = true;
+                    }
+                }
+            }
+            if (y1 > miny && y1 < maxy && f(x, y1) >= z) {
+                newValues[7] = f(x, y1);
+                changed = true;
+            }
+            if (y2 > miny && y2 < maxy && f(x, y2) >= z) {
+                newValues[0] = f(x, y2);
+                changed = true;
+            }
 
-                case 2:
-                    return greedy(x1, y1, i);
 
-                case 3:
-                    return greedy(x1, y2, i);
 
-                case 4:
-                    return greedy(x2, y, i);
+            if (!changed) {
+                return values;
+            } else {
 
-                case 5:
-                    return greedy(x2, y1, i);
+                double newZ = f(x, y);
+                int pos = 8;
 
-                case 6:
-                    return greedy(x2, y2, i);
+                for (int k = 0; k < newValues.length; k++) {
+                    if (newValues[k] > newZ) {
+                        newZ = newValues[k];
+                        pos = k;
+                    }
+                }
 
-                case 7:
-                    return greedy(x, y1, i);
+                switch (pos) {
+                    case 1:
+                        return greedy(x1, y, i, timestep, it, maxit, offset, time);
 
-                case 0:
-                    return greedy(x, y2, i);
-                default:
-                    //System.out.println("DEFAULT: Goal point is: (" + x + " " + y + ")" );
-                    return values;
+                    case 2:
+                        return greedy(x1, y1, i, timestep, it, maxit, offset, time);
 
+                    case 3:
+                        return greedy(x1, y2, i, timestep, it, maxit, offset, time);
+
+                    case 4:
+                        return greedy(x2, y, i, timestep, it, maxit, offset, time);
+
+                    case 5:
+                        return greedy(x2, y1, i, timestep, it, maxit, offset, time);
+
+                    case 6:
+                        return greedy(x2, y2, i, timestep, it, maxit, offset, time);
+
+                    case 7:
+                        return greedy(x, y1, i, timestep, it, maxit, offset, time);
+
+                    case 0:
+                        return greedy(x, y2, i, timestep, it, maxit, offset, time);
+                    default:
+                        //System.out.println("DEFAULT: Goal point is: (" + x + " " + y + ")" );
+                        return values;
+
+                }
             }
         }
+        return values;
     }
 
-    private static double random() {
+    private static double random(long[] time) {
 
-        double x = new Random().nextInt(xoffset);
-        double y = new Random().nextInt(yoffset);
+        double x = new Random().nextInt(maxx-minx)+minx;
+        double y = new Random().nextInt(maxy-miny)+miny;
         double z = f(x, y);
+        g = z;
 
         //
         double bestX = x;
         double bestY = y;
         //
 
-        int i = 0;
+        //int i = 0;
 
-        System.out.println(i + ") " + x + " " + y + " " + z);
-        System.out.println(i + ") " + bestX + " " + bestY);
+        //System.out.println(i + ") " + x + " " + y + " " + z);
+        //System.out.println(i + ") " + bestX + " " + bestY);
 
 
-        for (i = 1; i < nits; ++i) {
+        for (int i = 0; i < nits; ++i) {
 
-            x = new Random().nextInt(xoffset);
-            y = new Random().nextInt(yoffset);
-            if (f(x, y) > z) {
-                bestX = x;
-                bestY = y;
+            x = new Random().nextInt(maxx-minx)+minx;
+            y = new Random().nextInt(maxy-miny)+miny;
+            if (f(x, y) > g) {
                 z = f(x, y);
+                g = z;
             }
-            System.out.println(i + ") " + x + " " + y + " " + f(x, y));
-            System.out.println(i + ") " + bestX + " " + bestY);
+            if (time[0] == -1 && z >= thresh) time[0] = System.nanoTime();
+            System.out.println(i + ") " + "0 "+ x + " " + y + " " + f(x, y));
+            //System.out.println(i + ") " + bestX + " " + bestY);
         }
         return z;
     }
 
 
-    private static double f(double x, double y) {
+    public static double f(double x, double y) {
         return Math.sin(Math.sqrt( (Math.pow(x, 2)) + (Math.pow(y, 2)) ));
     }
 

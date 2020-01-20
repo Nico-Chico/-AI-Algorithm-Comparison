@@ -31,14 +31,15 @@ public class PSO {
     //Number of particles
     private static int np = -1;
     //Algorithm threshold (if some Particle reaches it, the solution is considered to be found)
-    private static double thresh = 0.97;
+    //private static double thresh = 0.97;
     //Number of dimensions
     private static int ndim = 2;
     //Best global solution
     private static Point g;
-
+    //Matrix with solution
     private static double[][] output;
-
+    //Number of timesteps
+    private static int ttp;
     public static Point getG() {
         return g;
     }
@@ -46,6 +47,10 @@ public class PSO {
     public static void setNP(int npt) {
         np = npt;
         swarm = new Particle [np];
+    }
+
+    public static void setTTP(int tp) {
+        ttp = tp;
     }
 
     public double[][] getOutput() {
@@ -91,8 +96,12 @@ public class PSO {
                 // Global maximum initialization
                 if (i == 0) {
                     g = point;
+                    Main.g = f(g);
                 } else {
-                    if (f(point) > f(g)) g = point;
+                    if (f(point) > f(g)) {
+                        g = point;
+                        Main.g = f(g);
+                    }
                 }
 
             }
@@ -103,7 +112,7 @@ public class PSO {
             }
 
             // Output initialization
-            output = new double[300][4];
+            output = new double[ttp*np][4];
 
         }
         else {
@@ -114,13 +123,13 @@ public class PSO {
 
     }
 
-    public static Point run() {
+    public static double run(long[] time, double thresh) {
         Point bestPoint = particlesInitialization();
-        double solution = (f(bestPoint));
+        Main.g = (f(bestPoint));
         int i = 0; // i = timestep
-        int tp = 1; // op = output position (pointer)
+        int tp = 0; // op = output position (pointer)
         // TODO: establish better criteria to stop
-        while (i < 30) {
+        while (i < ttp) {
         // while (solution < thresh) {
             for (int j = 0; j < np; ++j) {
 
@@ -146,24 +155,25 @@ public class PSO {
                 swarm[j].updatePosition();
                 //System.out.println("Particle " + j + " has position " + swarm[j].getX().getX() + " " + swarm[j].getX().getY() );
                 //System.out.println(f(swarm[j].getX()));
-                if (tp < 300) {
+
+                if (tp < ttp*np) {
                     output[tp][0] = i;
                     output[tp][1] = j;
                     output[tp][2] = swarm[j].getX().getX();
                     output[tp][3] = swarm[j].getX().getY();
+
+                    ++tp;
+                    //System.out.println("Timestesp " + i + " Particle " + j + " Position " + swarm[j].getX().getX() + " " + swarm[j].getX().getY());
                 }
-                ++tp;
-                //System.out.println("Timestesp " + i + " Particle " + j + " Position " + swarm[j].getX().getX() + " " + swarm[j].getX().getY());
-                /*output[j][0] = i+1;
-                output[j][1] = swarm[j].getX().getX();
-                output[j][2] = swarm[j].getX().getY();*/
 
                 if (f(swarm[j].getX()) > f(swarm[j].getP())) {
                     swarm[j].setP(swarm[j].getX());
                     if (f(swarm[j].getP()) > f(swarm[j].getG())) {
                         swarm[j].setG(swarm[j].getP());
                         g = swarm[j].getP();
-                        //solution = f(g);
+                        if (time[0] == -1 && f(g) >= thresh) {
+                            time[0] = System.nanoTime();
+                        }
                     }
                 }
                 //System.out.println(f(swarm[j].getP()));
@@ -171,12 +181,12 @@ public class PSO {
             ++i;
         }
         readOutput();
-        return g;
+        return f(g);
     }
 
     public static void readOutput() {
         for (int i = 0; i < output.length; ++i) {
-            System.out.println((int)output[i][1] + ") " + (int)output[i][0] + " " + output[i][2] + " " + output[i][3]);
+            System.out.println((int)output[i][1] + ") " + (int)output[i][0] + " " + output[i][2] + " " + output[i][3] + " " + Main.f(output[i][2], output[i][3]));
         }
     }
 

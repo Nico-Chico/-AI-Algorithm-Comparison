@@ -1,0 +1,9 @@
+-10 // Left X limit
+10 // Right X limt
+-10 // Left Y limit
+10 // Right Y limit
+0 // Mode
+50 // #particles
+0,97 // Threshold solution
+50 // Max iterations per particle
+0,15 // Step
