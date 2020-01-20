@@ -13,6 +13,11 @@ The project consists of two pieces of software:
 *  `show.py`:
         The frontend part.  The job of this file is to read the solutions file and show the evolution of the solutions graphically.
 
+## Dependencies
+ 1. You need python3
+ 2. We use "matplotlib" library in his last stable version. To install it without problems: `python3 -m pip install -U matplotlib`
+
+
 ## How to run the program?
  1. First you need run MaximizationProblem.jar for generate the solutions file.
  2. Later you run show.py to show this solutions.
