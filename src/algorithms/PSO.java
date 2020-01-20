@@ -96,11 +96,11 @@ public class PSO {
                 // Global maximum initialization
                 if (i == 0) {
                     g = point;
-                    Main.g = f(g);
+                    Main.g = g;
                 } else {
                     if (f(point) > f(g)) {
                         g = point;
-                        Main.g = f(g);
+                        Main.g = g;
                     }
                 }
 
@@ -123,9 +123,9 @@ public class PSO {
 
     }
 
-    public static double run(long[] time, double thresh) {
+    public static Point run(long[] time, double thresh) {
         Point bestPoint = particlesInitialization();
-        Main.g = (f(bestPoint));
+        Main.g = bestPoint;
         int i = 0; // i = timestep
         int tp = 0; // op = output position (pointer)
         // TODO: establish better criteria to stop
@@ -181,7 +181,7 @@ public class PSO {
             ++i;
         }
         readOutput();
-        return f(g);
+        return g;
     }
 
     public static void readOutput() {

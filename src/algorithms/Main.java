@@ -61,7 +61,7 @@ public class Main {
     public static long start;
 
     // Best solution
-    public static double g;
+    public static Point g;
 
     public static void main(String[] args) {
 
@@ -108,7 +108,7 @@ public class Main {
                 System.setOut(originalOut);
                 System.out.println("Enter the number of maximum iterations (between 1 and 800, to avoid infinite loop when finding a plateau)");
                 int maxit = scanner.nextInt();
-                System.out.println("Enter the value for the step value. NOTE: write with comma, not point");
+                System.out.println("Enter the value for the step value");
                 double step = scanner.nextDouble();
 
                 // Save original out stream.
@@ -124,7 +124,7 @@ public class Main {
                     double x = new Random().nextInt(maxx-minx)+minx;
                     double y = new Random().nextInt(maxy-miny)+miny;
 
-                    g = f(x, y);
+                    g = new Point(x, y);
                     //System.out.println(x);
                     //System.out.println(y);
                     //System.out.println(z);
@@ -161,10 +161,10 @@ public class Main {
                 // Start counting time
                 start = System.nanoTime();
                 System.setOut(originalOut);
-                System.out.println("Enter the value for the fp parameter (between 0 and 1) NOTE: write with comma, not point");
+                System.out.println("Enter the value for the fp parameter (between 0 and 1)");
                 double fp = scanner.nextDouble();
                 Particle.setFp(fp);
-                System.out.println("Enter the value for the fg parameter (between 0 and 1) NOTE: write with comma, not point");
+                System.out.println("Enter the value for the fg parameter (between 0 and 1)");
                 double fg = scanner.nextDouble();
                 Particle.setFg(fg);
                 System.out.println("Enter the number of steps (timesteps)");
@@ -191,7 +191,7 @@ public class Main {
             System.out.println("END");
             System.out.println("TOTAL TIME: " + elapsedTime);
             System.out.println("POINT TIME: " + findingTime);
-            System.out.println("BEST: " + g);
+            System.out.println("BEST: " + g.getX() + " " + g.getY() + " " + f(g));
 
             // Do not forget set original output and error stream back again.
             System.setOut(originalOut);
@@ -211,7 +211,7 @@ public class Main {
         if (it < maxit) {
             ++it;
             double z = f(x, y);
-            if (z > g) g = z;
+            if (z > f(g)) g = new Point(x, y);
             if (time[0] == -1 && z >= thresh) time[0] = System.nanoTime();
             System.out.println((int) i + ") " + timestep + " " + x + " " + y + " " + z);
             ++timestep;
@@ -337,7 +337,7 @@ public class Main {
         double x = new Random().nextInt(maxx-minx)+minx;
         double y = new Random().nextInt(maxy-miny)+miny;
         double z = f(x, y);
-        g = z;
+        g = new Point (x,y);
 
         //
         double bestX = x;
@@ -354,9 +354,9 @@ public class Main {
 
             x = new Random().nextInt(maxx-minx)+minx;
             y = new Random().nextInt(maxy-miny)+miny;
-            if (f(x, y) > g) {
+            if (f(x, y) > f(g)) {
                 z = f(x, y);
-                g = z;
+                g = new Point(x,y);
             }
             if (time[0] == -1 && z >= thresh) time[0] = System.nanoTime();
             System.out.println(i + ") " + "0 "+ x + " " + y + " " + f(x, y));
