@@ -64,12 +64,14 @@ public class Main {
     public static Point g;
 
     public static void main(String[] args) {
-
+        
+        if ((args == null) || (args.length == 0))
+            System.out.println("Please: Write the name of the input file next to the command.");
         try
         {
             // UNCOMMENT NEXT LINE FOR MANUAL INPUT
             // Scanner scanner = new Scanner(System.in);
-            Scanner scanner = new Scanner(new FileReader("./input.txt"));
+            Scanner scanner = new Scanner(new FileReader(args[0]));
             System.out.println("Enter left limit for X grid");
             minx = scanner.nextInt();
             System.out.println("Enter right limit for X grid");
