@@ -65,13 +65,16 @@ public class Main {
 
     public static void main(String[] args) {
         
-        if ((args == null) || (args.length == 0))
-            System.out.println("Please: Write the name of the input file next to the command.");
         try
         {
-            // UNCOMMENT NEXT LINE FOR MANUAL INPUT
-            // Scanner scanner = new Scanner(System.in);
-            Scanner scanner = new Scanner(new FileReader(args[0]));
+            Scanner scanner;
+            if ((args == null) || (args.length == 0)) {
+                scanner = new Scanner(System.in);
+                System.out.println("Please: Write the name of the input file next to the command.");
+            }else {
+                scanner = new Scanner(new FileReader(args[0]));
+            }
+    
             System.out.println("Enter left limit for X grid");
             minx = scanner.nextInt();
             System.out.println("Enter right limit for X grid");
@@ -84,8 +87,8 @@ public class Main {
             mode = scanner.nextInt();
             System.out.println("Enter number of particles");
             nits = scanner.nextInt();
-            System.out.println("Enter threshold for finding a solution");
-            thresh = scanner.nextDouble();
+            System.out.println("Enter threshold percentage of accuracy for finding the solution");
+            thresh = 1 - scanner.nextDouble()/100;
             // Save original out stream.
             PrintStream originalOut = System.out;
             // Create a new file output stream.

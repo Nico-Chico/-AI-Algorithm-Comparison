@@ -4,7 +4,7 @@
 10 // Right Y limit
 2 // Mode
 50 // #particles
-0,97 // Threshold solution
+3 // Threshold solution
 0,25 // fp (local velocity)
 0,8 // fg (global velocity)
 50 // #timesteps

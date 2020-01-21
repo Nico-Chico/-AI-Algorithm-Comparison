@@ -4,4 +4,4 @@
 10 // Right Y limit
 1 // Mode
 50 // #particles
-0,97 // Threshold solution
+3 // Threshold solution

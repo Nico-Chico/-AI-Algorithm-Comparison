@@ -43,11 +43,20 @@ fig.suptitle(title, fontsize=14, fontweight='bold')
 
 
 
-# Function
+# Function 1: Rosenbrock
 X = np.arange(minXlim, maxXlim, 0.25)
 Y = np.arange(minYlim, maxYlim, 0.25)
 X, Y = np.meshgrid(X, Y)
 Z = np.sin(np.sqrt(X**2 + Y**2))
+
+# # Function 2: 
+# X = np.arange(minXlim, maxXlim, 0.25)
+# Y = np.arange(minYlim, maxYlim, 0.25)
+# X, Y = np.meshgrid(X, Y)
+# fact1 = np.sin(X)*np.sin(Y);
+# fact2 = np.exp(np.abs(100 - np.sqrt(X**2+Y**2)/np.pi));
+# Z = -0.0001 * (abs(fact1*fact2)+1)**0.1;
+
 
 # Plot the surface.
 surf = ax.plot_surface(X, Y, Z, cmap=cm.coolwarm, linewidth=0, antialiased=True, alpha=.3)

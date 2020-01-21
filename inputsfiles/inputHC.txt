@@ -4,6 +4,6 @@
 10 // Right Y limit
 0 // Mode
 50 // #particles
-0,97 // Threshold solution
+3 // Threshold solution
 50 // Max iterations per particle
 0,15 // Step
