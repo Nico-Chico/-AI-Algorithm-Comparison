@@ -136,7 +136,7 @@ elif mode == 2:
         y = data[:,t,1]
         z = data[:,t,2]
         scat = ax.scatter(x, y, z, s=60, c=colors) #Update the plot becouse we are in interactive mode
-        plt.pause(0.02)
+        plt.pause(0.001)
 
 # Ending
 line = fp.readline().replace('\n', '') #Removing newline
@@ -146,8 +146,15 @@ line = fp.readline().replace('\n', '') #Removing newline
 s = line.split(': ')
 optimalTime = s[1]
 
+line = fp.readline().replace('\n', '') #Removing newline
+line = line.split(': ')
+sol = line[1].split()
+sol_value = float(sol[2])
+sol_x = float(sol[0])
+sol_y = float(sol[1])
+
 ax.set_title("Total time: " + totalTime + "ns | Optimal time: " + optimalTime + "ns")
-ax.text(0, 0, 0, "Central point", size=4, zorder=1, color='k')
+ax.text(sol_x, sol_y, sol_value, "S", size=10, zorder=4, color='k')
 
 fp.close()
 plt.ioff()
