@@ -19,10 +19,9 @@ The project consists of two pieces of software:
 
 ## How to run the program?
  1. First you need run MaximizationProblem.jar for generate the solutions file.
-        `java -jar MaximizationProblem.jar` It ask you for inputs.
-    - You can write inputs on a file and pass it as argument in the MaximizationProblem.jar call.
-        `java -jar MaximizationProblem.jar` inputs.txt'
-
+    - `java -jar MaximizationProblem.jar` It ask you for inputs.
+    - `java -jar MaximizationProblem.jar inputs.txt` You can write inputs on a file and pass it as argument in the MaximizationProblem.jar call.
+        
  2. Later you run show.py to show this solutions.
 
 ## Tasks
