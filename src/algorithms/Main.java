@@ -64,17 +64,12 @@ public class Main {
     public static Point g;
 
     public static void main(String[] args) {
-        
+
         try
         {
-            Scanner scanner;
-            if ((args == null) || (args.length == 0)) {
-                scanner = new Scanner(System.in);
-                System.out.println("Please: Write the name of the input file next to the command.");
-            }else {
-                scanner = new Scanner(new FileReader(args[0]));
-            }
-    
+            // UNCOMMENT NEXT LINE FOR MANUAL INPUT
+            // Scanner scanner = new Scanner(System.in);
+            Scanner scanner = new Scanner(new FileReader("./input.txt"));
             System.out.println("Enter left limit for X grid");
             minx = scanner.nextInt();
             System.out.println("Enter right limit for X grid");
@@ -87,8 +82,8 @@ public class Main {
             mode = scanner.nextInt();
             System.out.println("Enter number of particles");
             nits = scanner.nextInt();
-            System.out.println("Enter threshold percentage of accuracy for finding the solution");
-            thresh = 1 - scanner.nextDouble()/100;
+            System.out.println("Enter threshold for finding a solution");
+            thresh = 1 - (double)scanner.nextInt()/100;
             // Save original out stream.
             PrintStream originalOut = System.out;
             // Create a new file output stream.
@@ -136,6 +131,8 @@ public class Main {
 
                     double values[] = greedy(x, y, i, 0, 0, maxit, step, time);
                     findingTime = time[0] - start;
+                    if (findingTime < 0)
+                        findingTime = elapsedTime;
                     double z = f(x, y);
                 }
                 elapsedTime = System.nanoTime() - start;
@@ -156,6 +153,8 @@ public class Main {
                 random(time);
                 elapsedTime = System.nanoTime() - start;
                 findingTime = time[0] - start;
+                if (findingTime < 0)
+                    findingTime = elapsedTime;
                 // Printing random execution time
                 //System.out.println("Time for random algorithm is " + elapsedTime);
             }
@@ -189,6 +188,8 @@ public class Main {
                 //System.out.println("Best solution for PSO is point (" + g.getX() + ", " + g.getY() + ") = " + f(g));
                 elapsedTime = System.nanoTime() - start;
                 findingTime = time[0] - start;
+                if (findingTime < 0)
+                    findingTime = elapsedTime;
                 // Printing random execution time
                 //System.out.println("Time for PSO algorithm is " + elapsedTime);
 

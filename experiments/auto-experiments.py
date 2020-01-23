@@ -1,10 +1,10 @@
 import os
- 
-os.chdir("exp1/") # Star the script on the experiments folder
- 
+
+os.chdir("exp6/") # Star the script on the experiments folder
+
  ## Create a list with all subdirectories
 folders = []
-for entry in os.scandir('./'): 
+for entry in os.scandir('./'):
     if entry.is_dir():
         folders.append(entry.path)
 
@@ -57,8 +57,3 @@ for i in folders:
     print("")
     os.system("rm values.txt")
     os.chdir("../")
-
-
-
-
-
