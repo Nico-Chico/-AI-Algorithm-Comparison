@@ -11,6 +11,7 @@ for entry in os.scandir('./'):
 for i in folders:
     print("EXPERIMENT " + i)
     os.chdir(i)
+    os.system("rm results.txt 2> /dev/null")
     totalTime=0.0
     pointTime=0.0
     solution=0.0
@@ -19,6 +20,7 @@ for i in folders:
     for i in range(1, N):
         os.system("java -jar ../../../MaximizationProblem.jar input.txt >/dev/null")
         os.system("tail -n3 solutions.txt > values.txt")
+        # os.system("cat values.txt") # To see all values are OK!
         fp = open('values.txt', 'r')
         line = fp.readline().replace('\n', '') #Removing newline
         s = line.split(': ')
