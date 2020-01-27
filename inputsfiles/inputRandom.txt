@@ -1,7 +1,7 @@
--10 // Left X limit
-10 // Right X limt
--10 // Left Y limit
-10 // Right Y limit
-1 // Mode
-50 // #particles
-3 // Threshold solution
+-10
+10
+-10
+10 
+1
+50
+3 
