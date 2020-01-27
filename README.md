@@ -24,6 +24,11 @@ The project consists of two pieces of software:
         
  2. Later you run show.py to show this solutions.
 
+## Experiments:
+   - [Experiments paper](https://docs.google.com/document/d/13m4MrGQ6cvUipA4QvsIz_t6LTdsBxd5h8Y-B0tr3q1Q/edit#)
+   - [Presentation](https://docs.google.com/presentation/d/1dmmDgCqEDRjhk4BC24o4qt20BamftTze/edit#slide=id.p13)
+
+   We make a script to reapeat each experiments 50 times. Its auto-experiments.py on experiments/ folder
+
 ## Tasks
-* [ ] Implements other test functions
-* [ ] FINAL PRESENTATION
+* [ ] Implements other test functions (No time)
