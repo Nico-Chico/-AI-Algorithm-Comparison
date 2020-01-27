@@ -28,7 +28,11 @@ The project consists of two pieces of software:
    - [Testing experiments results](https://docs.google.com/document/d/13m4MrGQ6cvUipA4QvsIz_t6LTdsBxd5h8Y-B0tr3q1Q/edit?usp=sharing)
    - [Presentation](https://drive.google.com/file/d/1dmmDgCqEDRjhk4BC24o4qt20BamftTze/view?usp=sharing)
 
-   We make a script to reapeat each experiments 50 times. Its auto-experiments.py on experiments/ folder
+       We make a script to reapeat each experiments 50 times. Its auto-experiments.py on experiments/ folder.
+       On the first line of the script you select the name of the experiments folder that you want.
+       You must create this folder and subfolders each one with its respective input.txt.
+       Later you run the script on the experiments folder and he will take care of the rest
+       Script is made on python and only works in GNU/Linux systems.
 
 ## Tasks
 * [ ] Implements other test functions (No time)
