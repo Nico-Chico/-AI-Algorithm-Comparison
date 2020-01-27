@@ -25,7 +25,7 @@ The project consists of two pieces of software:
  2. Later you run show.py to show this solutions.
 
 ## Experiments:
-   - [Testing experiments results](https://drive.google.com/file/d/1dmmDgCqEDRjhk4BC24o4qt20BamftTze/view?usp=sharing)
+   - [Testing experiments results](https://docs.google.com/document/d/13m4MrGQ6cvUipA4QvsIz_t6LTdsBxd5h8Y-B0tr3q1Q/edit?usp=sharing)
    - [Presentation](https://drive.google.com/file/d/1dmmDgCqEDRjhk4BC24o4qt20BamftTze/view?usp=sharing)
 
    We make a script to reapeat each experiments 50 times. Its auto-experiments.py on experiments/ folder
